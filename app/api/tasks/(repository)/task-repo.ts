@@ -8,7 +8,6 @@ async function save(task: CreateTaskRequest){
 }
 
 async function findByCreatedAtBetween(startTime: number, endTime: number) : Promise<Task[]> {
-    console.log(`SELECT * FROM tasks WHERE created_at BETWEEN ${startTime} AND ${endTime}`)
     const result = (await pool.query(`SELECT * FROM tasks WHERE created_at BETWEEN $1 AND $2`, [startTime, endTime])).rows;
     return result.map((task: any) => toCamelCase(task))
 }

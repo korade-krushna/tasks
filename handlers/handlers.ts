@@ -1,10 +1,8 @@
 import { ApiResponse } from "@/lib/types";
 import axios from "axios"
 
-const BASE_URL = process.env.BACKEND_URL || "http://localhost:3000"
-
 async function createTaskHandler(payload: Object) {
-    return axios.post(`${BASE_URL}/api/tasks`, payload)
+    return axios.post(`/api/tasks`, payload)
         .then((response) => {
             console.log(response.data);
             const res: ApiResponse = response.data 
@@ -17,7 +15,8 @@ async function createTaskHandler(payload: Object) {
 }
 
 async function getTaskForDurationHandler(startTime: number, endTime: number) {
-    return axios.get(`${BASE_URL}/api/tasks?startTime=${startTime}&endTime=${endTime}`)
+    console.log(process.env.BACKEND_URL)
+    return axios.get(`/api/tasks?startTime=${startTime}&endTime=${endTime}`)
         .then((response) => {
             console.log(response.data);
             const res: ApiResponse = response.data 

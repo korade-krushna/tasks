@@ -8,9 +8,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function handleToast(res: ApiResponse){
-    if(res.status === 200){
+    if(res.status === 200 && res.message ) {
         toast.success(res.message)
-    } else {
+    } else if(res.status === 999 && res.message ) {
         toast.error(res.message)
     }
 }
